@@ -1,0 +1,46 @@
+version: '3'
+
+services:
+  prometheus:
+    image: prom/prometheus
+    container_name: my-prometheus
+    networks:
+      - grafana-prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    restart: always
+
+  grafana:
+    image: grafana/grafana-oss:latest
+    container_name: my-grafana
+    networks:
+      - grafana-prometheus
+    ports:
+      - "3000:3000"
+    restart: always
+
+  mongodb:
+    image: mongo:latest
+    container_name: my-mongodb
+    networks:
+      - grafana-prometheus
+    ports:
+      - "27017:27017"
+
+  mongodb_exporter:
+    image: percona/mongodb_exporter:0.20
+    container_name: my_mongodb_exporter
+    networks:
+      - grafana-prometheus
+    ports:
+      - "9216:9216"
+      - "17001:17001"
+    depends_on:
+      - mongodb
+    command: --mongodb.uri=mongodb://mongodb:27017
+
+networks:
+  grafana-prometheus:
+    driver: bridge

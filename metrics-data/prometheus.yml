@@ -1,0 +1,18 @@
+global:
+  scrape_interval: 2s
+
+scrape_configs:
+  # Prometheus itself
+  - job_name: "prometheus"
+    honor_labels: true
+    static_configs:
+      - targets: ["prometheus:9090"]
+  # Micronaut
+  - job_name: "micronaut"
+    metrics_path: "/prometheus"
+    static_configs:
+      - targets: ["192.168.0.82:8080"]
+  # MongoDB
+  - job_name: 'mongodb'
+    static_configs:
+      - targets: ['192.168.0.82:9216']

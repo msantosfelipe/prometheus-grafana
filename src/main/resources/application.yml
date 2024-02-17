@@ -1,0 +1,21 @@
+micronaut:
+  application:
+    name: metrics
+  metrics:
+    enabled: true
+    export:
+      prometheus:
+        enabled: true
+        step: PT1M
+        descriptions: true
+endpoints:
+  prometheus:
+    sensitive: false
+
+mongodb:
+  uri: mongodb://localhost:27017/metrics
+
+netty:
+  default:
+    allocator:
+      max-order: 3
