@@ -1,4 +1,4 @@
-## Prometheus/Grafana Metrics
+## Micronaut Kotlin/Prometheus/Grafana Metrics
 
 This project shows how to expose Prometheus metrics from Micronaut and send it to Grafana
 
@@ -22,7 +22,7 @@ This project shows how to expose Prometheus metrics from Micronaut and send it t
 ##### URLs
 
 - Prometheus: http://localhost:9090/
-- Granafa: http://localhost:3000/?orgId=1
+- Granafa: http://localhost:3000/
 - MongoDB: mongodb://localhost:27017/metrics
 
 ### How to stop
